@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>实现 bind 方法</title>
+</head>
+
+<body>
+    <script>
+        // 所有函数对象都是 Function 创建的
+        Function.prototype._bind = function (target) {
+            // 由于 bind 方法不会立即执行，所以外层包一个 function
+            return () => { // 箭头函数没有独立的作用域
+                this.call(target);  // this: _bind 方法的调用对象
+            }
+        }
+
+        function fn() {
+            console.log(this.age);
+        }
+
+        (fn._bind({ age: 19 }))(); // 19
+    </script>
+</body>
+
+</html>

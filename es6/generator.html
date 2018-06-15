@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>generator next args</title>
+</head>
+
+<body>
+    <script>
+
+        // ## Generator 函数：遍历器生成函数
+
+        // 场景：next 方法的参数表示上一个 yield 表达式的返回值。因此，第一次调用 next 方法，传递参数是无效的
+        // 问题：封装 generator ，使得第一次调用 next 方法，传递的参数有效
+        // 思路：generator 函数外面包一层
+
+        function genWrapper(genFn) {    // 传递一个 generator 函数
+            return function (...args) {
+                console.log('init args:', args);
+
+                const genObj = genFn();
+                genObj.next();  // 在内层函数，先调用第一次 next 方法
+                return genObj;  // 返回已调用第一次 next 方法的 generator object
+            }
+        }
+
+        const genWrapped = genWrapper(function* () {
+            console.log('第一次传递的参数', `${yield}`);
+            return '执行完毕';
+        }); // genWrapped => genObj
+
+        genWrapped('init data').next('hello world');
+
+        // for...of 循环
+        // 自动遍历 generator 函数的 iterator 对象，不需要调用 next
+        // done 为 true 时，循环终止
+        function* foo() {
+            yield 1;
+            yield 2;
+            yield 3;
+            return 4;   // 终止
+            yield 5;
+        }
+
+        for (const value of foo()) {    // value 为 yield 的返回值
+            console.log(value); // 1,2,3
+        }
+
+        // 原生的对象没有遍历接口，无法使用 for...of 循环
+        // 使用 generator 函数为对象加上 iterator 接口
+        function* objectEntries(object) {
+            const proKeys = Reflect.ownKeys(object); // 获取对象的属性
+
+            for (const key of proKeys) {
+                yield [key, object[key]];
+            }
+        }
+        const testData = { name: 'hopper', age: 20 };
+        for ([key, value] of objectEntries(testData)) {
+            console.log(`key:${key};value:${value}`);
+        }
+
+        // 给对象添加 Symbol.iterator 属性，实现 for...of
+        function* objectEntries2() {
+            const proKeys = Object.keys(this);
+
+            for (const key of proKeys) {
+                yield [key, this[key]];
+            }
+        }
+        const testData2 = { name: 'hopper two', age: 18 };
+        testData2[Symbol.iterator] = objectEntries2;
+        for ([key, value] of testData2) {
+            console.log(`key:${key};value:${value}`);
+        }
+
+        // 除了 for...of ，其他遍历器接口：1.扩展运算符（...） 2.结构赋值   3.Array.from 方法内部调用
+    </script>
+</body>
+
+</html>

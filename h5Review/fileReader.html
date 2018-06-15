@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>fileReader</title>
+</head>
+
+<body>
+
+    <input type="file" name="文件" id="file">
+
+    <script>
+        if (window.FileReader) {
+            console.log('支持 FileReader');
+
+            var file = document.querySelector('#file');
+            file.onchange = function () {
+                var selectedFile = this.files[0];
+                var fileReader = new FileReader();  // 创建文件读取器
+
+                // 调用读取方法
+                // fileReader.readAsText(selectedFile);         // 文本
+                // fileReader.readAsBinaryString(selectedFile);    // 二进制码
+                fileReader.readAsDataURL(selectedFile);         // DataURL
+
+                fileReader.onload = function () {   // 注册读取成功的事件 
+                    console.log(fileReader.result);     // 结果通过读取器的 result 属性获取
+                }
+            }
+        } else {
+            console.log('浏览器不支持 FileReader');
+        }
+    </script>
+</body>
+
+</html>

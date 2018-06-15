@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>获取网络状态</title>
+</head>
+
+<body>
+    <script>
+        // 当前网络状态
+        window.navigator.onLine && console.log('Online');
+
+        // 网络状态事件
+        window.ononline = () => {   // 开始在线工作时触发
+            console.log('Online');
+        }
+
+        window.onoffline = () => {
+            console.log('Offline');
+        }
+    </script>
+</body>
+
+</html>

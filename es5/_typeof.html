@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>判断数据类型</title>
+</head>
+
+<body>
+    <script>
+        // 提取数据类型
+        function _typeof(arg) {
+            let res = Object.prototype.toString.call(arg);    // 格式：'[object xxx]'
+            return res.replace(/\[object |\]/g, '').toLowerCase(); // 正则提取 xxx
+        }
+
+        console.log(_typeof(11));    // number
+
+    </script>
+</body>
+
+</html>

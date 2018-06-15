@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>类操作</title>
+    <style>
+        .bg {
+            background: yellow;
+        }
+
+        .large {
+            height: 50px;
+        }
+
+        .color-toggle {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box large">aaaaaa</div>
+    <input type="button" value="添加背景" id="bg">
+    <input type="button" value="变小" id="large">
+    <input type="button" value="字体颜色" id="color">
+    <script>
+        var div = document.querySelector('div');
+        var bg = document.querySelector('#bg');
+        var large = document.querySelector('#large');
+        var color = document.querySelector('#color');
+
+        bg.onclick = function () {
+            div.classList.add('bg');
+            console.log(div.classList.contains('box')); // 输出是否包含某个类名
+        }
+
+        large.onclick = function () {
+            div.classList.remove('large');
+        }
+
+        color.onclick = function () {
+            div.classList.toggle('color-toggle');
+        }
+    </script>
+</body>
+
+</html>

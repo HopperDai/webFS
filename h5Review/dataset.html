@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dataset</title>
+</head>
+
+<body>
+    <div id="dataset" data-hello="hi">aaaaaa</div>
+    <script>
+        var DOM = document.querySelector('#dataset');
+        console.log(DOM.dataset.hello);
+        DOM.dataset.hi = 'hello';
+        console.log(DOM.dataset.hi);
+    </script>
+</body>
+
+</html>

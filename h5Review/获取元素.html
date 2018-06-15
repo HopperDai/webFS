@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>获取元素</title>
+</head>
+
+<body>
+    <div class="hello">1111</div>
+    <div class="hello">1111</div>
+    <div class="hello">1111</div>
+
+    <script>
+        var oHello = document.querySelector('.hello');  // 选择单个元素
+        oHello.style.background = 'yellow';
+
+        var hellos = document.querySelectorAll('.hello');   // 选择符合选择器规则的多个元素
+        for (var i = 0; i < hellos.length; i++) {
+            hellos[i].style.color = 'red';
+        }    
+    </script>
+</body>
+
+</html>

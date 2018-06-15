@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script> 
+    // 1.工厂模式（视为工厂里的产品）
+    // 该模式是一个类的实例化延迟到了子类
+    function createFactory(name, sayWhat) {
+        var child = new Object();
+
+        child.name = name;
+        child.say = function () {
+            console.log('I am ' + this.name + '.' + sayWhat);
+        }
+
+        return child;
+    }
+    var factoryChild = createFactory('child in factory', 'hello world');
+    factoryChild.say();
+
+
+    // 2.构造函数模式
+    function Person(name) {
+        this.name = name;
+        this.introduce = function () {
+            console.log('I am ' + this.name);
+        }
+    }
+    var person = new Person('hopper');
+    person.introduce();
+
+    // 3.原型模式
+    function Person1() { }
+    // Person1.prototype.name = 'hopper1';
+    // Person1.prototype.introduce = function () {
+    //     console.log('I am ' + this.name);
+    // }
+    Person1.prototype = {
+        // 由于重写了 prototype 对象， constructor 不存在，需手动添加
+        constructor: Person1,
+        name: 'hopper1',
+        introduce: function () {
+            console.log('I am ' + this.name);
+        }
+    }
+    var person1 = new Person1();
+    person1.introduce();
+
+
+    // 4.构造函数和原型组合模式 
+    function Person2(name) {
+        this.name = name;
+    }
+    Person2.prototype.introduce = function () { // 原型负责共享引用的方法
+        console.log('I am ' + this.name);
+    }
+    var person2 = new Person2('person2');
+    person2.introduce();
+
+
+    // 5. 动态原型模式
+    // 根据某个方法的存在状态，决定是否初始化原型，封装在构造函数中
+
+
+    // 6. 寄生构造函数模式
+    // new + 工厂模式
+
+    // 7. 稳妥构造函数模式
+    // 没有公共属性，方法不引用 this 
+</script>
+
+</html>
