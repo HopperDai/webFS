@@ -1,14 +1,8 @@
 {
   "name": "webfs",
   "version": "1.0.0",
-  "description": "webfs node_modules config",
+  "description": "web full stack",
   "main": "index.js",
-  "dependencies": {
-    "eslint": "^4.19.1"
-  },
-  "devDependencies": {
-    "jquery": "^3.3.1"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,10 +10,16 @@
     "type": "git",
     "url": "git+https://github.com/Hopperhub/webFS.git"
   },
+  "keywords": [
+    "web"
+  ],
   "author": "hopper",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Hopperhub/webFS/issues"
   },
-  "homepage": "https://github.com/Hopperhub/webFS#readme"
+  "homepage": "https://github.com/Hopperhub/webFS#readme",
+  "devDependencies": {
+    "jquery": "^3.3.1"
+  }
 }
