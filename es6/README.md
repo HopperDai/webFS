@@ -61,3 +61,37 @@
                     <span>11111</span>
                 </div>`
             ```
+
+## 解构赋值
+
+- 使用条件
+
+    - 左右两边的解构必须一样
+
+    - 右边必须是个值
+
+    - 声明和赋值不能分开（须在同一行）
+
+- 案例
+
+    ```javascript
+    // 数组
+    let [a,b,c] = [1,2,3];
+    console.log(a,b,c); // 1 2 3
+
+    // 对象
+    let {a,b} = {b:2,a:1}
+    console.log(a,b); // 1 2
+
+    // 函数参数的解构赋值
+    function fn(obj) {
+        console.log(obj.name);
+    }
+
+    // 等价于
+    function fn({name}) {
+        console.log(name);
+    }
+
+    fn({name: 'hopper'});
+    ```
