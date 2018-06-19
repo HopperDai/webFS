@@ -39,12 +39,14 @@
 
 ## [AMD (异步模块定义)](https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)) -> 思想
 
+- requirejs
+
 - 模块和模块的依赖可以被异步加载
 
 - html 引入 requirejs
 
 ```html
-    <!-- data-main: 主 js 路径; src: 引入 requirejs 的路径 -->
+    <!-- data-main: 入口 js 路径; src: 引入 requirejs 的路径 -->
     <!-- data-main attribute tells require.js to load main.js after require.js loads. -->
     <script data-main="main.js" src="./require.js"></script>
 ```
@@ -64,3 +66,59 @@
 ```
 
 #### require —— 加载模块
+
+```javascript
+    require.config({
+        baseUrl:'',
+        paths:{}
+    })
+
+    require([],function(){})
+```
+
+### 检查第三方库是否支持 AMD 规范
+
+```javascript
+    // jquery、echarts...
+    if ( typeof define === "function" && define.amd ) {
+        define([], function() {
+            return jQuery;
+        } );
+    }
+```
+
+### 常用模块、文件夹路径配置
+
+```javascript
+    requier.config({
+        path:{
+            jquery: './lib/jquery.min'
+        }
+    })
+
+    // 引用
+    require(['jquery'],function($){})
+```
+
+### 注意：两个模块不能相互依赖 -> 循环依赖
+
+- requirejs 解决循环依赖
+
+```javascript
+    // a 已经依赖 b 
+    // b 中先添加 require 模块依赖
+    define(['require'],function(require){
+        require('a')(); // 执行 a 的代码，手动调用
+    })
+```
+
+## node 中模块化
+
+- require("http").createServer()
+
+- require("fs").readFile()
+
+- require("common/type").doSth()
+
+## es6 模块化
+

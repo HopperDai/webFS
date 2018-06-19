@@ -6,11 +6,15 @@ require.config({
     }
 });
 
-/*  1.引入依赖模块，即自动调用依赖模块的执行函数.如：test
+/*  
+    定义模块的返回值：
+    1.引入依赖模块，即自动调用依赖模块的执行函数.如：test
     2.如需通过事件触发依赖模块内的逻辑，可以在依赖模块中返回一个函数.如：fn
-    3.模块方法，实现类似 2 -> 方法一个对象
+    3.模块方法，实现类似 2 -> 返回一个对象
+
+    注意：导入模块时，有返回值得模块在前面导入，无返回值的模块在后面导入
 */
-require(['jquery', 'test', 'fn', 'method'], function ($, test, fn, method) {
+require(['jquery', 'test', 'fn', 'method'], ($, test, fn, method) => {
     $('#aa').on('click', () => {
         fn();
         method.BG('blue');
