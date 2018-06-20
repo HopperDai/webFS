@@ -8,7 +8,7 @@
 
 - http 协议是约束客户端和服务器传递的数据格式
 
-### 请求数据 -> 客户端（浏览器）进行数据组装
+### 请求数据：客户端（浏览器）进行数据组装。 客户端 -> 服务器
 
 - 请求首行
 
@@ -66,9 +66,102 @@
     
         ```If-Modified-Since	Tue, 19 Jun 2018 12:44:16 GMT```
 
-### 响应数据
+#### POST 请求数据格式 （request）
+
+1. 请求首行
+
+    ```POST /day_02/code/api/02_post.php HTTP/1.1```
+
+2. 请求头。名称和值
+
+    - ```Host	88.128.18.51```
+
+    - ```Content-Length	15```   内容长度
+
+    - ```Cache-Control	max-age=0```    缓存
+
+    - POST 提交有一个默认的请求头
+
+        ```Content-Type	application/x-www-form-urlencoded```
+
+3. 请求空行
+
+4. 请求体：请求发送的数据部分
+
+
+### 响应数据。 服务器 -> 客户端
+
+1. 响应首行
+
+    ```HTTP/1.1 200 OK```
+
+2. 响应头
+
+    - 服务器的事件
+
+        ```
+            Date	Tue, 19 Jun 2018 13:45:04 GMT
+            Server	Apache/2.2.21 (Win32) PHP/5.3.10
+        ```
+
+    - 文件的最后修改文件
+
+        ```Last-Modified	Tue, 19 Jun 2018 13:30:43 GMT```
+
+    
+
+    - 文件的版本.
+
+        ```ETag	"3600000000518d-253-56efeb066168b"```
+
+    - 字节
+
+        ```Accept-Ranges	bytes```
+
+    - 告诉客户端浏览器，响应体的长度.
+
+        ```Content-Length	595```
+
+    - 响应的数据格式
+
+        ```Content-Type	text/html```
+
+3. 响应空行
+
+4. 响应体（response）
+
+    ```
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>Title</title>
+        </head>
+        <body>
+                <!--
+                文件上传客户端的处理
+                        1:文件上传必须表单提交
+                        2：必须是post 方式提交
+                        3：表单属性  encType="multipart/form-data"
+                        4：input type="file"
+                -->
+                <form action="./api/02_post.php" method="post">
+                    照片:<input type="text" name="lifephoto"> <br> <br>
+                        <input type="submit" value="上传">
+                </form>
+        </body>
+        </html>
+    ```
 
 ### HTTP 数据解析流程
+
+![img](../imgs/数据解析.png)
+
+- http 协议约束了```请求数据```和```响应数据```的数据格式
+
+### GET 和 POST 区别
+
+### 状态码
 
 ## 前后端交互完整流程
 
