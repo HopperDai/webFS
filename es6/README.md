@@ -95,3 +95,74 @@
 
     fn({name: 'hopper'});
     ```
+
+    ## Module
+
+    - 由两个命令构成：export 和 import
+
+    - export: 规定模块的对外接口
+
+    - import: 输入其他模块提供的功能
+
+    ### export 命令
+
+    - 一个模块是一个独立的文件，内部的所有变量，外部无法读取，须使用 export 关键字输出变量
+
+    - 输出方式
+
+        ```javascript
+            // 1. 输出变量
+            export var name = 'hopper';
+            export var age = 20;
+            // 等价于
+            var name = 'hopper';
+            var age = 20;
+            export {name,age};  // 推荐
+
+            // 2. 输出函数或类（class）
+            export function sum(x,y){
+                return x + y;
+            }
+
+            // 3. 使用 as 关键字重命名
+            function v1 {...}
+            export {
+                v1 as aaa;
+                v1 as bbb;  // v1 可以用不同的名字输出两次
+            }
+        ```
+        - 注意：
+        
+            - export 输出的对外接口，必须与模块内的变量建立一一对应的关系
+
+                ```javascript
+                // 报错
+                export 1;   // 直接输出1
+
+                // 报错
+                var m = 1;
+                export m;   // 通过 m 变量直接输出 1 ， 不是接口
+
+                // 正确写法
+                // 写法 一
+                export var m = 1;
+
+                // 写法 二
+                var m = 1;
+                export {m};
+
+                // 写法 三
+                var n = 1;
+                export {n as m};
+
+                // 以上三种方法规定了对外的接口 m ; 实质：在接口名和模块内部变量之间，建立了一一对应的关系. 函数和类的输出，也要遵循这种写法
+                ```
+
+            - export 命令可以出现在模块的任意位置，但必须处于模块的顶层
+
+    ### import 命令
+
+    - export 命令定义了模块的对外接口，通过 import 命令加载这个模块
+
+    - 输入的变量都是只读，本质是输入接口
+
