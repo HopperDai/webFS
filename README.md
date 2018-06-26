@@ -22,6 +22,8 @@
 
 - putty（ windows 系统连接 Linux 环境的服务器）、winSCP（Mac 用 yummy FTP、Linux 直接用 ssh）
 
+  - putty: 命令行；winSCP: 拷贝文件
+
 - git for windows （Mac 用 git-scm、Linux 直接用 yum/apt）
 
 - TortoiseSVN（Max 用 SnailSVN、Linux 直接用 yum/apt）
@@ -35,3 +37,11 @@
 - MongoDB
 
 - 浏览器：Chrome、Firefox
+
+---
+
+### 版本控制
+
+作用：1.共享协作；2.版本查看
+
+
