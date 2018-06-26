@@ -44,4 +44,28 @@
 
 作用：1.共享协作；2.版本查看
 
+- svn：集中式（只有一台服务器）
 
+  - svn checkout
+
+  - svn commit = git add + git commit + git push
+
+  - svn update = git pull
+
+  - 远程客户端：码云
+
+- git：分布式
+
+  - 常用命令
+
+    - 克隆项目：```git clone 源地址```
+
+    - 提交：```git commit -a -m "说明"``` (-a: 提交所有的文件；-m:提交描述)
+
+    - 添加文件：```git add 文件/目录路径```
+
+    - 推到服务器：```git push```
+
+    - 更新到本地：```git pull```
+
+  - 远程客户端：github/码云
