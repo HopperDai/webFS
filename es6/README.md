@@ -182,3 +182,39 @@
             // Utils 是模块文件名，由于不带路径，须有配置文件
         ```
 
+    - 模块的整体加载
+
+        - 用 * 指定一个对象，模块输出的所有值都加载这个对象上
+
+        ```javascript
+            // circle.js
+            // 输出 area 和 circumference
+
+            export function area(r) {
+                return Math.PI * r * r;
+            }
+
+            export function circumference(r){
+                return 2 * Math.PI * r;
+            }
+        ```
+
+        ```javascript
+            // main.js
+
+            import {area,circumference} from './circle';
+
+            console.log('圆面积',area(4));
+            console.log('圆周长',circumference(4));
+        ```
+
+        ```javascript 
+            // 整体加载
+            // 注：整个 circle 对象是静态分析，不允许运行时改变
+
+            import * as circle from './circle'
+
+            console.log('圆面积'，circle.area(4));
+            console.log('圆周长'，circle.circumference(4));
+        ```
+
