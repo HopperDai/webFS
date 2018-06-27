@@ -307,3 +307,182 @@ console.log("圆周长", circumference(4));
     console.log('圆面积'，circle.area(4));
     console.log('圆周长'，circle.circumference(4));
 ```
+
+## 面向对象（es6）
+
+- es6 之前的面向对象：定义一个函数，函数名既是类又是构造函数
+
+- es6 引入一个关键字 class，用于定义一个类
+
+  - class
+
+  - super
+
+  - extends
+
+  ```javascript
+  // user 类
+  class user {
+    // 构造函数
+    constructor(name, password) {
+      this.name = name;
+      this.password = password;
+    }
+
+    // 方法
+    login() {
+      console.log("登录成功");
+    }
+  }
+  let u = new user("hopper", 123456);
+  u.login(); // 登录成功
+  ```
+
+- class 继承
+
+  ```javascript
+  // user 类
+  class user {
+    // 构造函数
+    constructor(name, password) {
+      this.name = name;
+      this.password = password;
+    }
+
+    // 方法
+    login() {
+      console.log("登录成功");
+    }
+  }
+
+  // vipUser 继承 user
+  // 子类大于父类：父类有的，子类一定有；子类有的，父类未必有
+  class vipUser extends user {
+    constructor(name, password, level) {
+      super(name, password); // 调用父类的 constructor
+
+      this.level = level;
+    }
+
+    logout() {
+      console.log("退出登录");
+    }
+  }
+
+  let vU = new vipUser("hopper1", 654321, 9);
+  console.log(vU.name); // hopper1
+  console.log(vU.password); // 654321
+  console.log(vU.level); // 9
+  vU.login();
+  vU.logout();
+  ```
+
+## Promise 解决异步操作(回调地狱)
+
+- 同步：只有操作完成了，才能执行下一次操作。一次只能做一个事
+
+  - 优势：简单
+
+- 异步：这个操作进行中，其它操作也能开始。一次可以做多个事
+
+  - 优势：
+
+    1.  用户体验好
+
+    2.  高效
+
+- Promise —— 状态机
+
+  - 创建 Promise 对象
+
+    ```javascript
+    let p = new Promise((resolve, reject) => {
+      异步代码;
+    });
+    ```
+
+  - 使用 Promise 对象
+
+    ```javascript
+    p.then(() => {}, () => {});
+    ```
+
+```javascript
+let p = new Promise((resolve, reject) => {
+  // resolve -> 解决
+  // reject -> 拒绝
+
+  // 异步操作
+  $.ajax({
+    url: "",
+    success(data) {
+      resolve(data);
+    },
+    error(err) {
+      reject(err);
+    }
+  });
+});
+
+let p1 = new Promise((resolve, reject) => {
+  // resolve -> 解决
+  // reject -> 拒绝
+
+  // 异步操作
+  $.ajax({
+    url: "",
+    success(data) {
+      resolve(data);
+    },
+    error(err) {
+      reject(err);
+    }
+  });
+});
+
+let p2 = new Promise((resolve, reject) => {
+  // resolve -> 解决
+  // reject -> 拒绝
+
+  // 异步操作
+  $.ajax({
+    url: "",
+    success(data) {
+      resolve(data);
+    },
+    error(err) {
+      reject(err);
+    }
+  });
+});
+
+p.then(
+  arr => {
+    // 成功的回调
+  },
+  err => {
+    // 失败的回调
+  }
+);
+
+// p,p1,p2都执行完成，才会调用 then
+Promise.all([p, p1, p2]).then(
+  arr => {
+    // arr: p,p1,p2 三个结果的数组
+  },
+  err => {}
+);
+```
+
+- 新版 jq 的 ajax 的返回值是一个 Promise
+
+```javascript
+Promise.all([
+  $.ajax({ url: "" }),
+  $.ajax({ url: "" }),
+  $.ajax({ url: "" })
+]).then(arr => {}, err => {});
+```
+
+## generator
+
