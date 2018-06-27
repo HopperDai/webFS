@@ -484,5 +484,99 @@ Promise.all([
 ]).then(arr => {}, err => {});
 ```
 
-## generator
+- 配合 generator 和 async\* 使用
 
+## generator （参照 [generator.html](./generator.html)）
+
+- 普通函数：一直执行到底
+
+- generator: 中间可以暂停
+
+```javascript
+/*
+  三要素：
+    1. 定义 *
+    2. 暂停 yield
+    3. 执行 next()
+*/
+
+// 定义，使用 *
+function* show() {
+  console.log(1);
+
+  yield; // 暂停
+
+  console.log(2);
+}
+
+let gen = show(); // 调用 generator 函数不会执行，而是生成一个 generator 对象
+
+// 调用 next() 一次执行一下；从 generator 函数的初始位置开始执行
+gen.next(); // 1
+gen.next(); // 2
+```
+
+- 重要元素说明
+
+  - yield
+
+    - 传参：参数通过 next 方法传递进来，注意：next 方法的参数表示上一个 yield 表达式的值
+
+    - 返回值：yield 右边的值就是 next() 的返回值
+
+    ```javascript
+    function* show() {
+      console.log(11);
+
+      yield 123; // 第一个 yield
+
+      console.log(22);
+
+      let yV = yield; // 第二个 yield
+
+      console.log("yV", yV);
+    }
+
+    let gen = show();
+
+    let res1 = gen.next();
+    console.log(res1); // {value:123,done:false}
+
+    gen.next();
+
+    gen.next("yield 表达式的值"); // 该参数为第二个 yield 表达式的值
+    ```
+
+  - next
+
+    - 执行逻辑：每个 next 的调用会执行到对应 yield 的右边才停止
+
+      ![](../imgs/generator.png)
+
+- 应用场景：需要等待某些操作（如：数据交互）执行完成，才执行后续的操作
+
+  ```javascript
+  // 结构：类似同步操作；但执行的是异步操作
+  function* show() {
+    // 操作1
+    // 操作2
+
+    let data1 = yield $.ajax("a.txt");
+
+    // 操作3
+    // 操作4
+    let data2 = yield $.ajax("b.txt");
+
+    // 操作5
+  }
+  ```
+
+  - 配合 `yield-runner-blue` 模块使用
+
+    ```javascript
+    // generator 的匿名函数不能是箭头函数，必须是 function 函数
+
+    runner(function *() {
+      
+    });
+    ```
