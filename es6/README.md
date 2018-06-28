@@ -580,3 +580,105 @@ gen.next(); // 2
       
     });
     ```
+
+## async/await 
+
+- generator 只是一个过渡，开发过程中推荐使用：async/await + promise
+
+---
+
+- 说明：generator 实际应用时需要依赖 runner ，无法确定市面上哪个 runner 是最好的，因此 es 官方推出了 async/await ，即官方版的 runner
+
+- async 函数：generator 函数的语法糖
+
+```javascript
+// generator 函数
+function* show(){
+  console.log(111);
+  yield 222;
+  console.log(333);
+}
+
+// async 函数
+async function show(){
+  console.log(111);
+  await 222;
+  console.log(333);
+}
+
+// * -> async
+// yield -> await
+```
+
+- async 函数对 generator 函数的改进
+
+  1.  内置执行器
+
+      - generator 函数：执行必须靠执行器，即需要调用 next 方法
+
+      - async 函数：自带执行器，与普通函数一样，调用一次，就会自动执行，输出最后的结果
+
+  2.  更好的语义
+
+      相对星号和 yield ，async 和 await 的语义更清楚。
+
+      - async 表示函数里有异步操作
+
+      - await 表示紧跟在后面的表达式需要等待结果
+
+  3.  更广的适用性
+
+      - yield 后面只能是 Thunk 函数和 Promise 对象
+
+      - await 后面可以是 Promise 对象和原始类型的值（这时等于同步操作）
+
+  4.  返回值是 Promise
+
+      - generator 函数返回值是 iterator 对象
+
+      - async 函数返回值是 Promise 对象，能调用 then 方法
+
+  注：async 函数可以是箭头函数
+
+- promise、generator 和 async 的区别
+
+||promise|generator|async|
+|---|---|---|---|
+|本质|等待异步操作结束|无感处理异步操作|官方 runner |
+
+  - 写法
+
+    ```javascript
+      // promise
+      new Promise((resolve,reject)=>{
+        // 异步操作
+      }).then(()=>{
+        // 异步完成后执行
+      })
+
+      // generator
+      runner(function* (){
+        // do something
+
+        let res1 = yield $.ajax();
+
+        // do something
+
+        let res2 = yield $.ajax();
+
+        // end
+      })
+
+      // async
+      (async ()=>{
+        // do something
+
+        let res1 = await $.ajax();
+
+        // do something
+
+        let res2 = await $.ajax();
+
+        // end
+      })();
+    ```
