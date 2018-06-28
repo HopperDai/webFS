@@ -16,11 +16,14 @@ define(function (require, exports, module) {
     //     console.log(123);
     // }
 
+    const moda = require('./a');
+    const modb = require('./b');
+
     module.exports = {
         b: 1,
         c: 2,
-        sum(a, b) {
-            console.log(a + b);
+        sum() {
+            console.log(moda.a + modb.b);
         }
     }
 });
