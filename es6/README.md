@@ -576,12 +576,10 @@ gen.next(); // 2
     ```javascript
     // generator 的匿名函数不能是箭头函数，必须是 function 函数
 
-    runner(function *() {
-      
-    });
+    runner(function*() {});
     ```
 
-## async/await 
+## async/await
 
 - generator 只是一个过渡，开发过程中推荐使用：async/await + promise
 
@@ -593,14 +591,14 @@ gen.next(); // 2
 
 ```javascript
 // generator 函数
-function* show(){
+function* show() {
   console.log(111);
   yield 222;
   console.log(333);
 }
 
 // async 函数
-async function show(){
+async function show() {
   console.log(111);
   await 222;
   console.log(333);
@@ -642,43 +640,70 @@ async function show(){
 
 - promise、generator 和 async 的区别
 
-||promise|generator|async|
-|---|---|---|---|
-|本质|等待异步操作结束|无感处理异步操作|官方 runner |
+|      | promise          | generator        | async       |
+| ---- | ---------------- | ---------------- | ----------- |
+| 本质 | 等待异步操作结束 | 无感处理异步操作 | 官方 runner |
 
-  - 写法
+- 写法
 
-    ```javascript
-      // promise
-      new Promise((resolve,reject)=>{
-        // 异步操作
-      }).then(()=>{
-        // 异步完成后执行
-      })
+  ```javascript
+  // promise
+  new Promise((resolve, reject) => {
+    // 异步操作
+  }).then(() => {
+    // 异步完成后执行
+  });
 
-      // generator
-      runner(function* (){
-        // do something
+  // generator
+  runner(function*() {
+    // do something
 
-        let res1 = yield $.ajax();
+    let res1 = yield $.ajax();
 
-        // do something
+    // do something
 
-        let res2 = yield $.ajax();
+    let res2 = yield $.ajax();
 
-        // end
-      })
+    // end
+  })(
+    // async
+    async () => {
+      // do something
 
-      // async
-      (async ()=>{
-        // do something
+      let res1 = await $.ajax();
 
-        let res1 = await $.ajax();
+      // do something
 
-        // do something
+      let res2 = await $.ajax();
 
-        let res2 = await $.ajax();
+      // end
+    }
+  )();
+  ```
 
-        // end
-      })();
-    ```
+## json
+
+- key 和 value 一样，简写
+
+```javascript
+let json = {
+  a: a,
+  b: b
+};
+
+// 等同于
+let json = { a, b };
+```
+
+- 函数
+
+```javascript
+let json = {
+  show: function() {}
+};
+
+// 等同于
+let json = {
+  show() {}
+};
+```

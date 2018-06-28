@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>seajs</title>
+    <script src="../../node_modules/seajs/dist/sea.js"></script>
+    <script>
+        // 引用模块
+        seajs.use(['./mod1.js'], function (mod) {
+            mod.sum(mod.b, mod.c);
+        });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
