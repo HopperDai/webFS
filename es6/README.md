@@ -189,7 +189,7 @@ if (str.endsWith(".txt")) {
   });
   ```
 
-## Module
+## Module 模块化
 
 - 由两个命令构成：export 和 import
 
