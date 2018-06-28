@@ -551,7 +551,7 @@ gen.next(); // 2
 
     - 执行逻辑：每个 next 的调用会执行到对应 yield 的右边才停止
 
-      ![](../imgs/generator.png)
+      ![img](../imgs/generator.png)
 
 - 应用场景：需要等待某些操作（如：数据交互）执行完成，才执行后续的操作
 
