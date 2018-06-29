@@ -1,0 +1,17 @@
+{
+  "name": "babel_test",
+  "version": "1.0.0",
+  "description": "babel",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d lib"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "hopper",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0"
+  }
+}

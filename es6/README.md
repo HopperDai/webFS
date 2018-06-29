@@ -707,3 +707,29 @@ let json = {
   show() {}
 };
 ```
+
+## babel
+
+- 安装 babel-cli
+
+  - cli: command line interface 命令行接口
+
+  - 全局安装：`npm i -g babel-cli`
+
+- 添加 package.json script
+
+  `"build": "babel src -d lib"`
+
+  - src 源目录
+
+  - -d destination
+
+  - lib 编译到的目录（目标目录）
+
+- 创建 .babelrc 配置文件
+
+  - `presets` 预设模式
+
+    - env 模式 （A Babel preset for each environment）
+
+      - `npm install babel-preset-env --save-dev`

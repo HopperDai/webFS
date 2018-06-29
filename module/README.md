@@ -4,9 +4,9 @@
 
 - 模块：可以重用的单位
 
-    - 定义
+  - 定义
 
-    - 调用
+  - 调用
 
 ---
 
@@ -47,8 +47,6 @@ const DatePicker = (function() {
   4.  vue、angular、react 集成了各自的模块化
 
   5.  webpack 模块化的解决方案
-
-
 
 ## [AMD (异步模块定义)](<https://github.com/amdjs/amdjs-api/wiki/AMD-(%E4%B8%AD%E6%96%87%E7%89%88)>) -> 思想
 
@@ -134,3 +132,22 @@ define(["require"], function(require) {
 - require("common/type").doSth()
 
 ## es6 模块化
+
+- 浏览器目前暂不支持，需要依靠工具
+
+  - babel: 可以编译 es6 , 但不能编译 es6 的模块
+
+  - webpack: 编译模块
+
+---
+
+- import
+
+- export
+
+  ```javascript
+  let a = 1;
+  let b = 2;
+
+  export { a, b };
+  ```
