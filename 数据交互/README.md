@@ -18,7 +18,7 @@ https://tools.ietf.org/html/rfc2616
 
 1.  无状态
 
-2.  连接过程（三次握手）：连接、接受、发送请求
+2.  请求过程（三次握手）：发送连接请求、响应接受、发送请求
 
 3.  消息（数据）分成两块：头（header） + 体（body）
 
@@ -82,7 +82,7 @@ https://tools.ietf.org/html/rfc2616
 
 - `onreadystatechange` 当通信状态改变
 
-  - `readyState` 五种状态
+  - `readyState` 五种状态（通信状态）
 
     ```
     0  初始状态  xhr 对象刚创建完
@@ -91,3 +91,98 @@ https://tools.ietf.org/html/rfc2616
     3  接收完成  头接收完
     4  接收完成  体接收完
     ```
+
+  - `status` http 状态码，（通信结果）
+
+    ```
+    1xx  消息
+    2xx  成功
+    3xx  重定向
+      - 301 Moved Permanently  永久重定向
+      - 302 Move temporarily   临时重定向
+      - 304 Not Modified       没有修改，缓存
+    4xx  请求错误
+    5xx  服务器错误
+    6xx+ 自定义
+
+    成功：2xx/304 -> (xhr.status >=200 && xhr.status <300) || xhr.status === 304
+
+    重定向的原因：
+    - 访问：taobao.com
+      - PC 端访问：302 -> www.taobao.com
+      - 手机端访问：302 -> m.taobao.com
+    ```
+
+  - 接收响应的数据
+
+    - xhr.response(不常用)
+
+    - xhr.responseText ：文本的方式返回数据
+
+      - 解析数据：
+
+        - `eval('('+xhr.responseText+')');` 不太安全
+
+        - JSON 安全，但不兼容 ie6/7/8
+
+          - JSON.stringify：把 json 转换为字符串
+
+          - JSON.parse: 把字符串转换为 json
+
+          - json 标准格式
+
+            1.  key 必须用引号包起来
+
+            2.  双引号
+
+          ```javascript
+          // 兼容处理
+
+          let json = null;
+          try {
+            json = JSON.parse(xhr.responseText);
+          } catch (e) {
+            json = eval("(" + xhr.responeseText + ")");
+          }
+          ```
+
+    - xhr.responseURL(不常用)
+
+    - xhr.responseXML ：xml 方式返回数据
+
+      ```javascript
+      // json
+      let json = {
+        name: "小明",
+        age: 23,
+        sister: {
+          name: "小红",
+          age: 24
+        }
+      };
+      ```
+
+      ```xml
+        <!-- xml -->
+        <?xml version=1.0 encoding="UTF-8"?>
+        <person>
+          <name>小明</name>
+          <age>23</age>
+          <sister>
+            <person>
+              <name>小红</name>
+              <age>24</age>
+            </person>
+          </sister>
+        </person>
+      ```
+
+## 安全
+
+1.  前台没有安全性；后台才有安全性问题
+
+    - 数据都与后台相关
+
+2.  xss 跨站脚本攻击
+
+ajax 不允许跨域：防止 xxs

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<person>
+  <name>小明</name>
+  <age>23</age>
+  <sister>
+    <person>
+      <name>小红</name>
+      <age>24</age>
+    </person>
+  </sister>
+</person>
