@@ -486,7 +486,7 @@ Promise.all([
 
 - 配合 generator 和 async\* 使用
 
-## generator （参照 [generator.html](./generator.html)）
+## generator （参照 [generator.html](./generator.html)） 语法糖 -> 编译
 
 - 普通函数：一直执行到底
 
@@ -522,7 +522,7 @@ gen.next(); // 2
 
     - 传参：参数通过 next 方法传递进来，注意：next 方法的参数表示上一个 yield 表达式的值
 
-    - 返回值：yield 右边的值就是 next() 的返回值
+    - 返回值：yield 后面就是 next() 的返回值，只能是 Thunk 函数或 Promise 对象
 
     ```javascript
     function* show() {
