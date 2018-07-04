@@ -212,6 +212,10 @@ if (xhr.upload) {
 }
 ```
 
+| 1.0                | 2.0                                                           |
+| ------------------ | ------------------------------------------------------------- |
+| xhr.send('字符串') | 1. xhr.send(formData); 2. xhr.send(Blob); 3. xhr.send(Buffer) |
+
 1.  Formdata 容器 -> post 请求
 
     - set: 添加值
@@ -274,3 +278,5 @@ new FormData();
           res.end();
         }
         ```
+
+## jsonp 跨域（废弃）
