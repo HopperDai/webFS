@@ -279,4 +279,12 @@ new FormData();
         }
         ```
 
-## jsonp 跨域（废弃）
+## jsonp 跨域（废弃） 不官方
+
+- 通过 script 的 src 访问资源。script 访问资源不跨域
+
+- 资源地址带有一个 cb/callback 的参数名，参数名有前后端约定，一般为 callback ，参数值为函数名，具体的函数在前端定义好，后端返回该函数的调用，把需要响应的数据作为函数的参数。
+
+  - 前端可以获取请求的数据
+
+- jquery -> dateType:'jsonp'
