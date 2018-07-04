@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script>
+        window.onload = function () {
+            var btn = document.getElementById('send');
+            var oF = document.getElementById('file');
+
+            btn.onclick = function () {
+                var data = new FormData(); // FormData 数据
+                data.set('f', oF);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.upload.onload = function () {
+                    console.log('上传完成');
+                }
+
+                xhr.upload.onprogress = function (ev) {
+                    console.log(ev.loaded, ev.total);
+                }
+
+                xhr.open('post', './server1.php', true); // FormData -> post 请求
+                xhr.send(data);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300 || xhr.status == 304) {
+                            console.log(xhr.responseText);
+                        } else {
+                            console.log('出错');
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="file" id="file">
+    <input type="button" id="send" value="ajax请求">
+</body>
+
+</html>
