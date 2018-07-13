@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        .banner {}
+
+        .banner li {
+            width: 23.4375rem;
+            height: 5.544 rem;
+        }
+
+        .banner li img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        window.onload = () => {
+            document.documentElement.style.fontSize = document.documentElement.clientWidth * 16 / 375 + 'px';
+        }
+    </script>
+</head>
+
+<body>
+    <ul class="banner">
+        <li>
+            <img src="../imgs/banner.png" alt="">
+        </li>
+    </ul>
+</body>
+
+</html>

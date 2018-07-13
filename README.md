@@ -58,14 +58,52 @@
 
   - 常用命令
 
-    - 克隆项目：```git clone 源地址```
+    - 克隆项目：`git clone 源地址`
 
-    - 提交：```git commit -a -m "说明"``` (-a: 提交所有的文件；-m:提交描述)
+    - 提交：`git commit -a -m "说明"` (-a: 提交所有的文件；-m:提交描述)
 
-    - 添加文件：```git add 文件/目录路径```
+    - 添加文件：`git add 文件/目录路径`
 
-    - 推到服务器：```git push```
+    - 推到服务器：`git push`
 
-    - 更新到本地：```git pull```
+    - 更新到本地：`git pull`
 
   - 远程客户端：github/码云
+
+### angular/vue/react
+
+| angular       | vue     | react            |
+| ------------- | ------- | ---------------- |
+| ng-cli        | vue-cli | react-create-app |
+| @angular/http | axios   | fetch            |
+
+- angular
+
+```
+// 组件
+xxx.component.html
+xxx.component.css
+xxx.component.js
+```
+
+- vue
+
+```
+// 组件
+<template></template>
+<script></script>
+<style></style>
+```
+
+- react
+
+```
+// 组件
+class xxx extends Component{
+  js...
+
+  render(){
+    return()
+  }
+}
+```
