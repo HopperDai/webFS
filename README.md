@@ -76,6 +76,7 @@
 | ------------- | ------- | ---------------- |
 | ng-cli        | vue-cli | react-create-app |
 | @angular/http | axios   | fetch            |
+| assets        | static  | public           |
 
 - angular
 
