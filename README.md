@@ -72,11 +72,12 @@
 
 ### angular/vue/react
 
-| angular       | vue     | react            |
-| ------------- | ------- | ---------------- |
-| ng-cli        | vue-cli | react-create-app |
-| @angular/http | axios   | fetch            |
-| assets        | static  | public           |
+| angular            | vue                            | react                |
+| ------------------ | ------------------------------ | -------------------- |
+| ng-cli             | vue-cli                        | react-create-app     |
+| @angular/http      | axios                          | fetch                |
+| assets             | static                         | public               |
+| 脏检查（数据层面） | 数据收集依赖 proxy（数据层面） | 虚拟 DOM（数据层面） |
 
 - angular
 
@@ -142,3 +143,5 @@ class xxx extends Component{
     - 适当优化图片，减小图片的大小
 
     - 利用 css sprites 整合图像（传说中的精灵图），即把多个图片合成一个
+
+## 浏览器兼容性
