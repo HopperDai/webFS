@@ -137,6 +137,12 @@ if (str.endsWith(".txt")) {
   }
 
   fn({ name: "hopper" });
+  
+  // 函数对象深层解构
+  function test({a: {c}}) {
+    console.log(c)
+  }
+  test({a: {c: 1112}}) // 1112 解析出第二层
   ```
 
 ## 数组
