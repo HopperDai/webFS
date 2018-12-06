@@ -141,6 +141,7 @@ class xxx extends Component{
   - 图片
 
     - 适当优化图片，减小图片的大小
+      - [图片压缩工具](https://tinypng.com/)
 
     - 利用 css sprites 整合图像（传说中的精灵图），即把多个图片合成一个
 
