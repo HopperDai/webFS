@@ -44,7 +44,7 @@ https://tools.ietf.org/html/rfc2616
   - http 2.0
 
 ## form 最重要
-
+ 
 - 浏览器向服务器请求数据只有一种方式：form 表单 。ajax/jsonp 只是对表单的一种模拟
 
 ---
