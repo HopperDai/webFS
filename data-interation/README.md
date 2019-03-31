@@ -75,17 +75,19 @@ https://tools.ietf.org/html/rfc2616
 
 - 不兼容 ie6
 
-- 特点：用户体验好、性能高
+- 特点：
+  - 用户体验好。请求的时候，不需要刷新页面
+  - 交互性能高。异步请求，可以减少后台服务器的压力
 
 - 步骤
 
-  1.  创建 xhr 对象
+  1.  创建 xhr 对象 : new XMLHttpRequest()
 
-  2.  连接
+  2.  连接 : open
 
-  3.  发送数据
+  3.  发送数据 : send
 
-  4.  接收响应
+  4.  接收响应 : onreadystatechange
 
 - `onreadystatechange` 当通信状态改变
 
@@ -108,6 +110,7 @@ https://tools.ietf.org/html/rfc2616
       - 301 Moved Permanently  永久重定向
       - 302 Move temporarily   临时重定向
       - 304 Not Modified       没有修改，缓存
+        - 无需再次传输请求的内容，可以使用缓存的内容
     4xx  请求错误
     5xx  服务器错误
     6xx+ 自定义
