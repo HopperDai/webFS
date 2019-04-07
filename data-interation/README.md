@@ -111,6 +111,8 @@ https://tools.ietf.org/html/rfc2616
       - 302 Move temporarily   临时重定向
       - 304 Not Modified       没有修改，缓存
         - 无需再次传输请求的内容，可以使用缓存的内容
+        - 到服务器进行有效性校验，如果服务器资源没有变化则返回304
+        - 304 状态码理解：https://juejin.im/post/5a142fab6fb9a044fb076322#comment
     4xx  请求错误
     5xx  服务器错误
     6xx+ 自定义

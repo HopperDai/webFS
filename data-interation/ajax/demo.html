@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <button>请求数据</button>
+  <script>
+    const button = document.querySelector('button')
+    button.onclick = () => {
+      const xhr = new XMLHttpRequest()
+      xhr.open('GET', './data/test.xml', true)
+      xhr.send()
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState !== 4) return
+        const status = xhr.status
+        if (status >= 200 && status < 300 || status === 304) {
+          const res = xhr.responseXML
+          console.log(res.querySelector('person'))
+        }
+      }
+    }
+  </script>
+</body>
+</html>
