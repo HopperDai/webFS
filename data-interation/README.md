@@ -133,7 +133,7 @@ https://tools.ietf.org/html/rfc2616
 
       - 解析数据：
 
-        - `eval('('+xhr.responseText+')');` 不太安全
+        - `eval('('+xhr.responseText+')');` 不安全
 
         - JSON 安全，但不兼容 ie6/7/8
 
@@ -143,13 +143,17 @@ https://tools.ietf.org/html/rfc2616
 
           - json 标准格式
 
-            1.  key 必须用引号包起来
+            1. key 必须用引号包起来
 
-            2.  双引号
+            2. 双引号
+
+            3. 转义。如果字符串外层使用双引号，而且字符串中包含双引号，需要将字符串中的双引号进行转义(单引号也如此)
 
           ```javascript
-          // 兼容处理
+          // 转义
+          const str = "hello, I am \"hopper\""
 
+          // json 兼容处理
           let json = null;
           try {
             json = JSON.parse(xhr.responseText);
@@ -191,10 +195,8 @@ https://tools.ietf.org/html/rfc2616
 
 ## 安全
 
-1.  前台没有安全性；后台才有安全性问题
+- 相对前端而言，后端服务的安全性要求会比较严格。因为数据都与后端服务相关
 
-    - 数据都与后台相关
+- 前端比较严重的安全性问题: xss 跨站脚本攻击
 
-2.  xss 跨站脚本攻击
-
-ajax 不允许跨域：防止 xxs
+ajax 不允许跨域：防止 xss
