@@ -1,6 +1,4 @@
-/* 
-    seajs  命名空间，隔离变量
-*/
+// seajs  命名空间，隔离变量
 const seajs = {
     use(path, fn_end) {
         // 读取模块文件，使用 ajax
