@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>My promise</title>
+    </head>
+    <body>
+        <script>
+            class MyPromise {
+                // 创建 promise 实例接受一个回调函数
+                constructor(cb) {
+                    // 储存异步回调方法的队列
+                    this._queue = [];
+
+                    // 保存成功和失败的结果
+                    this._successRes = null;
+                    this._errorRes = null;
+
+                    // 记录异步的执行状态
+                    this._status = '';
+
+                    cb(function(...arg) { // 成功的回调，对应 resolve
+                        this._successRes = arg;
+                        this._queue.forEach(cbObj => {
+                            cbObj.cb1(this._successRes);
+                        });
+                        this._status = 'success';
+                    }, function(...arg) { // 失败的回调，对应 reject
+                        this._errorRes = arg;
+                        this._queue.forEach(cbObj => {
+                            cbObj.cb2(this._errorRes);
+                        });
+                        this._status = 'error';
+                    }); // 创建时直接运行
+                }
+                then(cb1, cb2) { // cb1: 成功的回调；cb2：失败的回调
+                    switch (this._status) {
+                        case 'success':
+                            cb1(this._successRes);
+                            break;
+                        case 'error':
+                            cb2(this._errorRes);
+                            break;
+                        default:
+                            this._queue.push({ cb1, cb2 }); // 异步执行完成前，调用 then , 先把相关的回调保存在队列中
+                            break;
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>

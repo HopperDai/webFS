@@ -10,7 +10,7 @@ class promise_all {
             let i = 0;
             let arrRes = [];
             next();
-
+                
             function next() {
                 arr[i].then(res => {
                     i++;
