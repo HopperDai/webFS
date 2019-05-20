@@ -6,6 +6,9 @@
     </head>
     <body>
         <script>
+            // Promise 的本质
+            // 1. 状态改变时，调用 then 挂起的队列
+            // 2. then 调用时，执行对应的函数，并且返回结果参数
             class MyPromise {
                 // 创建 promise 实例接受一个回调函数
                 constructor(cb) {
@@ -19,13 +22,13 @@
                     // 记录异步的执行状态
                     this._status = '';
 
-                    cb(function(...arg) { // 成功的回调，对应 resolve
+                    cb((...arg) => { // 成功的回调，对应 resolve
                         this._successRes = arg;
                         this._queue.forEach(cbObj => {
                             cbObj.cb1(this._successRes);
                         });
                         this._status = 'success';
-                    }, function(...arg) { // 失败的回调，对应 reject
+                    }, (...arg) => { // 失败的回调，对应 reject
                         this._errorRes = arg;
                         this._queue.forEach(cbObj => {
                             cbObj.cb2(this._errorRes);
@@ -46,7 +49,49 @@
                             break;
                     }
                 }
+                static all(arr) {
+                    return new MyPromise((resolve, reject) => {
+                        let i = 0;
+                        const resArr = [];
+                        next(); // 先订阅第一个 promise 返回结果
+                        function next() {
+                            // 待前一个 promise 的回调响应，如果有 promise 没被订阅，则订阅；反之，认为所有的 promise 响应完毕，返回响应的结果列表
+                            arr[i].then(res => {
+                                resArr.push(res);
+                                i++;
+                                if (i===arr.length) {
+                                    resolve(resArr);
+                                } else {
+                                    next();
+                                }
+                            }, reject); // 如果某个 promise 响应错误，立即结束，同时响应拒绝
+                        }
+                    })
+                }
             }
+
+            const request = new MyPromise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('你好啊！');
+                }, 2000)
+            });
+            request.then(res => {
+                console.log(res);
+            });
+
+            const req1 = new MyPromise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('你好啊！');
+                }, 2000);
+            });
+            const req2 = new MyPromise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('我很好！');
+                }, 1000);
+            });
+            MyPromise.all([req1, req2]).then(res => {
+                console.log(res);
+            });
         </script>
     </body>
 </html>
