@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>websocket</title>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+    <script>
+        const sock = io.connect('ws://localhost:3000/');
+        document.onclick = () => {
+            sock.emit('browser', '123', '321');
+        }
+        sock.on('server', (...data) => {
+            console.log(`接收到服务器的数据：${data}`);
+        });
+    </script>
 </head>
 
 <body>
@@ -17,8 +27,8 @@
     <input type="button" value="登录" id="login">
     <input type="button" value="注册" id="reg">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="main.js"></script>
+    <!-- <script src="https://code.j query.com/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="main.js"></scr ipt> -->
 </body>
 
 </html>
