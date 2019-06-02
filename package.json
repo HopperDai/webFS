@@ -21,7 +21,7 @@
   "homepage": "https://github.com/Hopperhub/webFS#readme",
   "devDependencies": {
     "jquery": "^3.4.1",
-    "seajs": "^3.0.2",
+    "seajs": "^3.0.3",
     "yield-runner-blue": "0.0.4"
   },
   "dependencies": {
