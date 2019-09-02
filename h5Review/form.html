@@ -1,22 +1,117 @@
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Form</title>
+    <style>
+        form {
+            /* 居中 */
+            width: 400px;
+            margin: 0 auto;
+            /* 轮廓 */
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+        }
+        form div + div {
+            /* 第一个 div 后边 div 的样式 */
+            margin-top: 1em;
+        }
+        label {
+            /* 确保 label 大小相同并且对齐 */
+            display: inline-block;
+            width: 90px;
+            text-align: right;
+        }
+        input, textarea {
+            /* 确保所有字体大小相同 */
+            font: 1em sans-serif;
+            /* 输入宽大小相等 */
+            width: 300px;
+            box-sizing: border-box;
+            /* 文本输入框的边框样式 */
+            border: 1px solid #999;
+        }
+        input:focus, textarea:focus {
+            /* 激活的元素高亮 */
+            border-color: #000;
+        }
+        textarea {
+            /* 多行文本输入框与 label 对齐 */
+            vertical-align: top;
+            /* 文本空间 */
+            height: 5em;
+        }
+        .button {
+            /* 按钮放到和文本输入框一样的位置 */
+            padding-left: 90px;
+        }
+        button {
+            /* 外边距的大小 */
+            margin-left: .5em;
+        }
+    </style>
 </head>
-
 <body>
-    <form>
+    <h1>Contact</h1>
+    <form action="" method="post">
         <div>
-            email:
-            <input type="email">
+            <label for="name">Name:</label>
+            <input type="text"
+                name="name"
+                id="name"
+                value="input 的默认值">
         </div>
         <div>
-            url:
-            <input type="url">
+            <label for="email">Email:</label>
+            <input type="email"
+                name="email"
+                id="email">
+        </div>
+        <div>
+            <label for="msg">Message:</label>
+            <textarea name="msg" id="msg">textarea 标签的默认值</textarea>
+        </div>
+        <div class="button">
+            <button type="submit">save your message</button>
+        </div>
+        <fieldset>
+            <legend>Fruit juice size</legend>
+            <p>
+                <input type="radio"
+                    name="size"
+                    id="size1"
+                    value="small">
+                <label for="size1">Small</label>
+            </p>
+            <p>
+                <input type="radio"
+                    name="size"
+                    id="size2"
+                    value="medium">
+                <label for="size2">Medium</label>
+            </p>
+            <p>
+                <input type="radio"
+                    name="size"
+                    id="size3"
+                    value="large">
+                <label for="size3">Large</label>
+            </p>
+            <p>
+                <input type="checkbox"
+                    id="other"
+                    value="otherSize">
+                <label for="other">other size</label>
+            </p>
+        </fieldset>
+        <div>
+            <label for="username">Name: <abbr title="required">*</abbr></label>
+            <input id="username" type="text" name="username">
         </div>
     </form>
 </body>
-
 </html>
