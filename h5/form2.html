@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>form2</title>
+	<link rel="stylesheet" href="./assets/css/payment-form.css">
+</head>
+<body>
+	<form>
+		<h1>Payment form</h1>
+		<p>Required fields are followed by <strong><abbr title="required">*</abbr></strong></p>
+		<section>
+			<h2>Contact information</h2>
+			<fieldset>
+				<legend>Title</legend>
+				<ul>
+					<li>
+						<label for="title1">
+							<input type="radio"
+								name="title"
+								id="title1"
+								value="M.">
+							Mister
+						</label>
+					</li>
+					<li>
+						<label for="title2">
+							<input type="radio"
+								name="title"
+								id="title2"
+								value="Ms.">
+							Miss
+						</label>
+					</li>
+				</ul>
+			</fieldset>
+			<p>
+				<label for="email">
+					<span>Email:</span>
+					<strong><abbr title="required">*</abbr></strong>
+				</label>
+				<input type="email"
+					name="userEmail"
+					id="email">
+			</p>
+			<p>
+				<label for="pwd">
+					<span>Password:</span>
+					<strong><abbr title="required">*</abbr></strong>
+				</label>
+				<input type="password"
+					name="password"
+					id="pwd">
+			</p>
+		</section>
+		<section>
+			<h2>Payment information</h2>
+			<p>
+				<label for="card">
+					<span>Card type:</span>
+				</label>
+				<select name="cardType" id="card">
+					<option value="visa">Visa</option>
+					<option value="mc">Mastercard</option>
+					<option value="amex">American Express</option>
+				</select>
+			</p>
+			<p>
+				<label for="number">
+					<span>Card number:</span>
+					<strong><abbr title="required">*</abbr></strong>
+				</label>
+				<input type="number"
+					id="number"
+					name="cardNumber">
+			</p>
+			<p>
+				<label for="date">
+					<span>Expiration date:</span>
+					<strong><abbr title="required">*</abbr></strong>
+					<em>formatted as mm/yy</em>
+				</label>
+				<input type="date" id="date" name="expiration">
+			</p>
+		</section>
+		<p>
+			<button type="submit">Validate the payment</button>
+		</p>
+	</form>
+</body>
+</html>
