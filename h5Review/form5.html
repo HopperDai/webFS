@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>form 校验</title>
+	<style>
+	body {
+		font: 1em sans-serif;
+		padding: 0;
+		margin : 0;
+	}
+	form {
+		max-width: 200px;
+		margin: 0;
+		padding: 0 5px;
+	}
+	p > label {
+		display: block;
+	}
+	input[type=text],
+	input[type=email],
+	input[type=number],
+	textarea,
+	fieldset {
+	/* 需要在基于WebKit的浏览器上对表单元素进行恰当的样式设置 */
+		-webkit-appearance: none;
+		
+		width : 100%;
+		border: 1px solid #333;
+		margin: 0;
+		
+		font-family: inherit;
+		font-size: 90%;
+		
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+
+	input:invalid {
+		box-shadow: 0 0 5px 1px red;
+	}
+
+	input:focus:invalid {
+		outline: none;
+	}
+	</style>
+</head>
+<body>
+	<!-- <form action=""> -->
+	<form action="" novalidate>
+		<p>
+			<fieldset>
+				<legend>性别：<abbr title="this field is mandatory">*</abbr></legend>
+				<input type="radio"
+					name="male"
+					required
+					value="man"
+					id="man">
+				<label for="man">男</label>
+				<input type="radio"
+					name="male"
+					required
+					value="woman"
+					id="woman">
+				<label for="woman">女</label>
+			</fieldset>
+		</p>
+		<p>
+			<label for="age">年龄</label>
+			<input type="number"
+				min="12"
+				max="120"
+				step="1"
+				name="age"
+				id="age"
+				pattern="\d+">
+		</p>
+		<p>
+			<label for="fruit">你喜欢的水果？<abbr title="this field is mandatory">*</abbr></label>
+			<input type="text"
+				id="fruit"
+				name="fruit"
+				list="fruitList"
+				required
+				pattern="[Bb]anana|[Cc]erry|[Aa]pple|[Ss]trawberry|[Ll]emon|[Oo]range">
+			<datalist id="fruitList">
+				<option value="Banana">Banana</option>
+				<option value="Cherry">Cherry</option>
+				<option value="Apple">Apple</option>
+				<option value="Strawberry">Strawberry</option>
+				<option value="Lemon">Lemon</option>
+				<option value="Orange">Orange</option>
+			</datalist>
+		</p>
+		<p>
+			<label for="email">邮箱</label>
+			<input type="email" name="email" id="email">
+		</p>
+		<p>
+			<label for="msg">留言</label>
+			<textarea name="msg"
+				id="msg"
+				maxlength="150"
+				rows="5"></textarea>
+		</p>
+		<p><button>提交</button></p>
+	</form>
+	<script>
+		// H5 验证 API , 浏览器兼容不好
+		const email = document.querySelector('#email');
+		email.addEventListener('input', function(ev) {
+			if (this.validity.typeMismatch) {
+				this.setCustomValidity('邮箱格式不正确');
+				console.log(this.checkValidity());
+			} else {
+				this.setCustomValidity('');
+			}
+		})
+	</script>
+</body>
+</html>

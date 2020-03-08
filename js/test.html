@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<button onclick="emit()">派发事件</button>
+	<script src="./事件总线.js"></script>
+	<script>
+		const _Bus = new Bus();
+		_Bus.$on('test', param => {
+			console.log('监听1', param);
+		});
+		_Bus.$on('test', param => {
+			console.log('监听2', param);
+		});
+		function emit() {
+			_Bus.$emit('test', '监听参数');
+		}
+	</script>
+</body>
+</html>
