@@ -20,5 +20,14 @@
 			_Bus.$emit('test', '监听参数');
 		}
 	</script>
+	<script src="./Bind.js"></script>
+	<script>
+		function testBind(x, y, z) {
+			console.log(this);
+			return x + y + z;
+		}
+		const b2 = testBind.bind({ a: 1 }, 22);
+		const sum = b2(3, 6);
+	</script>
 </body>
 </html>
