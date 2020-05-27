@@ -1,0 +1,5 @@
+- new 关键字进行 4 步操作
+  - 创建一个空对象 `let target = {}`
+  - 继承函数的原型(链接一个对象到另一个对象) `target.proto = fnc.prototype`
+  - 步骤1的对象作为 this 上下文，并执行函数 `fnc.call(target)`
+  - 如果函数没有返回对象，就返回 this
