@@ -6,3 +6,11 @@ Function.prototype.call2 = function(context) {
   delete ctx.fn
   return res // 函数可能有 return
 }
+
+Function.prototype.apply2 = function(context, arr) {
+  const ctx = context || window
+  ctx.fn = this
+  const res = eval(`ctx.fn(${arr.join(',')})`)
+  delete ctx.fn
+  return res
+}

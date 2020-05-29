@@ -34,6 +34,7 @@
 		const b2 = testBind.bind({ a: 1 }, 22);
 		const sum = b2(3, 6);
 		console.log(testBind.call2({target: 123}, 1, 2, 3))
+		console.log(testBind.apply2({target: 123}, [1, 2, 3]))
 
 		const dom = document.querySelector('.container')
 		traversal(dom)
